@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs>
+ <radialGradient id="bg" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#3B4A8C"/><stop offset=".62" stop-color="#232C5C"/><stop offset="1" stop-color="#121735"/></radialGradient>
+ <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D23A2C"/><stop offset="1" stop-color="#7E1E17"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset=".5" stop-color="#F2C14E"/><stop offset="1" stop-color="#B8862A"/></linearGradient>
+ <linearGradient id="tw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF8E6"/><stop offset="1" stop-color="#E3D2A6"/></linearGradient>
+ <linearGradient id="rib" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3680"/><stop offset="1" stop-color="#141B4A"/></linearGradient>
+ <filter id="glow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <path id="st" d="M0 -26 L7.6 -8 L27 -8 L11.5 4 L17 23 L0 12 L-17 23 L-11.5 4 L-27 -8 L-7.6 -8 Z"/>
+ <g id="ray"><path d="M-22 -118 L0 -214 L22 -118 Z"/><path d="M-9 -118 L0 -170 L9 -118 Z" fill="#FFF2B8" stroke="none"/></g>
+ <g id="phflag">
+  <path d="M0 0 L60 0 L60 17 L0 17 Z" fill="#0038A8"/><path d="M0 17 L60 17 L60 34 L0 34 Z" fill="#CE1126"/>
+  <path d="M0 0 L31 17 L0 34 Z" fill="#FFFFFF"/><circle cx="8" cy="17" r="3.4" fill="#FCD116"/>
+  <path d="M1 3.5 l1.6 0 -0.8 1.6z M1 29 l1.6 0 -0.8 1.6z M20 14.6 l1.6 0 -0.8 1.6z" fill="#FCD116"/>
+  <rect width="60" height="34" fill="none" stroke="#1E140A" stroke-width="2.2"/>
+ </g>
+</defs>
+
+<rect width="512" height="512" fill="#0F1438"/>
+<circle cx="256" cy="244" r="226" fill="url(#bg)" stroke="#1E140A" stroke-width="10"/><circle cx="256" cy="244" r="214" fill="none" stroke="url(#gold)" stroke-width="6"/>
+<g transform="translate(256 252)" fill="url(#gold)" stroke="#5A3A12" stroke-width="4" stroke-linejoin="round" opacity=".95"><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(0)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(30)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(60)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(90)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(120)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(150)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(180)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(210)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(240)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(270)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(300)"/><path d="M-14 -150 L0 -214 L14 -150 Z" transform="rotate(330)"/></g>
+<circle cx="256" cy="252" r="132" fill="#F6D777" stroke="#5A3A12" stroke-width="7"/><circle cx="256" cy="252" r="112" fill="#FFF0B8"/>
+<path d="M120 330 Q256 290 392 330 L392 380 Q256 410 120 380 Z" fill="#2E6B3A" stroke="#1E140A" stroke-width="7"/>
+<g stroke="#1E140A" stroke-width="7" stroke-linejoin="round"><path d="M222 332 L230 222 L282 222 L290 332 Z" fill="url(#tw)"/>
+<path d="M210 228 L210 198 L226 198 L226 212 L240 212 L240 198 L254 198 L254 212 L268 212 L268 198 L284 198 L284 212 L300 212 L300 228 Z" fill="url(#tw)"/>
+<path d="M244 332 L244 292 Q256 276 268 292 L268 332 Z" fill="#3A2414"/><rect x="249" y="244" width="14" height="22" rx="7" fill="#3A2414"/></g>
+<path d="M256 198 L256 150" stroke="#1E140A" stroke-width="9" stroke-linecap="round"/><path d="M256 198 L256 150" stroke="#C9CDD2" stroke-width="3.5" stroke-linecap="round"/>
+<g transform="translate(259 152) scale(.82)"><use href="#phflag"/></g>
+<g fill="url(#gold)" stroke="#5A3A12" stroke-width="4" stroke-linejoin="round"><use href="#st" transform="translate(112 214) scale(.8)"/><use href="#st" transform="translate(400 214) scale(.8)"/><use href="#st" transform="translate(256 62) scale(.7)"/></g>
+<g stroke="#1E140A" stroke-width="7" stroke-linejoin="round">
+<path d="M64 408 L106 392 L106 476 L64 462 L84 432 Z" fill="#141B4A"/><path d="M448 408 L406 392 L406 476 L448 462 L428 432 Z" fill="#141B4A"/>
+<path d="M98 396 Q256 358 414 396 L414 470 Q256 432 98 470 Z" fill="url(#rib)"/></g>
+
+<path id="mid" d="M98 429 Q256 391 414 429" fill="none"/>
+<text dy="23" font-family="'DejaVu Serif','Georgia',serif" font-weight="700" font-size="50" letter-spacing="5" fill="url(#gold)" stroke="#1E140A" stroke-width="2.4" paint-order="stroke" filter="url(#glow)"><textPath href="#mid" startOffset="50%" text-anchor="middle" >BAYANI</textPath></text></svg>
