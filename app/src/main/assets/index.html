@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#120C06;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body style="background:#120C06"><div id="preboot" style="position:fixed;inset:0;z-index:100000;background:#120C06"></div>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
@@ -844,7 +844,7 @@ Object.assign(TXT.en, {
   tabTowers: 'Towers', tabEnemies: 'Enemies', tabHeroes: 'Heroes', notMet: 'Not met yet', history: 'History note', stats: 'Stats',
   speed: 'Speed', armor: 'Armor', resist: 'Magic resist', costsLives: 'Lives if it escapes', levels: 'How it looks as it grows',
   language: 'Language', effects: 'Effects', high: 'High', low: 'Low', resetProgress: 'Reset progress', confirmReset: 'Tap again to erase all progress', resetDone: 'Progress erased',
-  about: 'Bayani Defense is a prototype. History notes are short summaries; please check them with your teacher or the National Historical Commission of the Philippines.',
+  about: 'History notes are short summaries; please check them with your teacher or the National Historical Commission of the Philippines.',
   done: 'Done', lv: 'Lv', time: 'Time'
 });
 Object.assign(TXT.fil, {
@@ -876,7 +876,7 @@ Object.assign(TXT.fil, {
   tabTowers: 'Tore', tabEnemies: 'Kalaban', tabHeroes: 'Bayani', notMet: 'Hindi pa nakikita', history: 'Tala sa kasaysayan', stats: 'Lakas',
   speed: 'Bilis', armor: 'Baluti', resist: 'Laban sa mahika', costsLives: 'Buhay kapag nakatakas', levels: 'Itsura habang lumalakas',
   language: 'Wika', effects: 'Epekto', high: 'Mataas', low: 'Mababa', resetProgress: 'Burahin ang progreso', confirmReset: 'Pindutin muli para burahin lahat', resetDone: 'Nabura ang progreso',
-  about: 'Prototype pa lamang ang Bayani Defense. Maiikling buod ang mga tala sa kasaysayan; suriin ito kasama ng guro o ng National Historical Commission of the Philippines.',
+  about: 'Maiikling buod ang mga tala sa kasaysayan; suriin ito kasama ng guro o ng National Historical Commission of the Philippines.',
   done: 'Tapos', lv: 'Antas', time: 'Oras'
 });
 /* Aklat (codex) entries */
@@ -1832,8 +1832,8 @@ function musicTick() {
   const c = AU.ctx; if (!c) return;
   if (!AU.mode || !AU.prefs.music || c.state !== 'running') { AU.next = c.currentTime + .1; return; }
   const sd = 60 / AU.bpm / 4;
-  if (AU.next < c.currentTime - .25) AU.next = c.currentTime + .05;
-  while (AU.next < c.currentTime + .16) { playStep(AU.step, AU.next); AU.next += sd; AU.step++; }
+  if (AU.next < c.currentTime - .5) AU.next = c.currentTime + .05;
+  while (AU.next < c.currentTime + .4) { playStep(AU.step, AU.next); AU.next += sd; AU.step++; }
 }
 function playStep(s, t) {
   const bar = Math.floor(s / 16), i = s % 16;
@@ -4954,7 +4954,7 @@ document.addEventListener('pointerdown', () => auInit(), { capture: true });
 document.addEventListener('keydown', () => auInit(), { capture: true });
 
 /* ---------------------------------------------------------------- save */
-function save() { try { localStorage.setItem('bayani.v3', JSON.stringify({ best: S.best, lang: S.lang, diff: S.diff, stage: S.stage, snd: AU.prefs, tips: S.seenTips, owned: S.owned, perks: S.perks, seen: S.seen, pearls: S.pearls, hero: S.hero, fx: GFX.hi, quiz: S.quiz, gift: S.gift, storySeen: S.storySeen, heroes: S.heroes, stats: S.stats, daily: S.daily, goals: S.goals, introSeen: S.introSeen, blood: S.blood, talents: S.talents, chal: S.chal, akl: S.akl, skins: S.skins, teacher: S.teacher, outfits: S.outfits, q18: S.q18, endless: S.endless, mini: S.mini, ev: S.ev, col: S.col, opt: S.opt })); } catch (e) {} }
+function save() { try { localStorage.setItem('bayani.v3', JSON.stringify({ best: S.best, lang: S.lang, diff: S.diff, stage: S.stage, snd: AU.prefs, tips: S.seenTips, owned: S.owned, perks: S.perks, seen: S.seen, pearls: S.pearls, hero: S.hero, fx: GFX.hi, quiz: S.quiz, gift: S.gift, storySeen: S.storySeen, heroes: S.heroes, stats: S.stats, daily: S.daily, goals: S.goals, introSeen: S.introSeen, blood: S.blood, talents: S.talents, chal: S.chal, akl: S.akl, skins: S.skins, teacher: S.teacher, outfits: S.outfits, q18: S.q18, endless: S.endless, mini: S.mini, ev: S.ev, col: S.col, opt: S.opt, ci: S.ciSeen })); } catch (e) {} }
 function load() {
   try {
     const raw3 = localStorage.getItem('bayani.v3'), d = JSON.parse(raw3 || localStorage.getItem('bayani.v2') || '{}');
@@ -4964,7 +4964,7 @@ function load() {
     if (Number.isInteger(d.stage) && STAGES[d.stage]) S.stage = d.stage;
     if (d.owned) S.owned = d.owned; if (d.perks) S.perks = d.perks; if (d.seen) S.seen = d.seen;
     if (Number.isFinite(d.pearls)) S.pearls = d.pearls; if (d.hero in HEROES) S.hero = d.hero; if (d.fx === false) GFX.hi = false;
-    if (d.quiz) S.quiz = d.quiz; if (d.gift && d.gift.last !== undefined) S.gift = d.gift; if (d.storySeen) S.storySeen = 1; if (d.heroes) S.heroes = d.heroes; if (d.stats) S.stats = d.stats; if (d.daily) S.daily = d.daily; if (d.goals) S.goals = d.goals; if (d.introSeen) S.introSeen = d.introSeen; if (d.blood === false) S.blood = false; if (d.talents) S.talents = d.talents; if (d.chal) S.chal = d.chal; if (d.akl) S.akl = d.akl; if (d.skins) S.skins = d.skins; if (d.teacher) S.teacher = true; if (d.outfits) S.outfits = d.outfits; if (d.q18) S.q18 = d.q18; if (d.endless) S.endless = d.endless; if (d.mini) S.mini = d.mini; if (d.ev) S.ev = d.ev; if (d.col) S.col = d.col; if (d.opt) S.opt = d.opt;
+    if (d.quiz) S.quiz = d.quiz; if (d.gift && d.gift.last !== undefined) S.gift = d.gift; if (d.storySeen) S.storySeen = 1; if (d.heroes) S.heroes = d.heroes; if (d.stats) S.stats = d.stats; if (d.daily) S.daily = d.daily; if (d.goals) S.goals = d.goals; if (d.introSeen) S.introSeen = d.introSeen; if (d.blood === false) S.blood = false; if (d.talents) S.talents = d.talents; if (d.chal) S.chal = d.chal; if (d.akl) S.akl = d.akl; if (d.skins) S.skins = d.skins; if (d.teacher) S.teacher = true; if (d.outfits) S.outfits = d.outfits; if (d.q18) S.q18 = d.q18; if (d.endless) S.endless = d.endless; if (d.mini) S.mini = d.mini; if (d.ev) S.ev = d.ev; if (d.col) S.col = d.col; if (d.opt) S.opt = d.opt; if (d.ci) S.ciSeen = d.ci;
   } catch (e) {}
   if (!unlocked(S.stage)) S.stage = 0;
   if (!heroOwned(S.hero)) S.hero = 'lapu';
@@ -6502,7 +6502,7 @@ const TRIVIA_X = [
   ['What was the name of the newspaper of the Propaganda Movement?', 'Ano ang pangalan ng pahayagan ng Kilusang Propaganda?', ['La Solidaridad', 'Kalayaan', 'El Heraldo'], ['La Solidaridad', 'Kalayaan', 'El Heraldo']],
   ['The Battle of Mactan took place in which year?', 'Anong taon naganap ang Labanan sa Mactan?', ['1521', '1565', '1898'], ['1521', '1565', '1898']]
 ].map((r, i) => ({ id: 'tx' + i, q: { en: r[0], fil: r[1] }, a: [0, 1, 2].map(k => ({ en: r[2][k], fil: r[3][k] })) }));
-const TRIVIA_POOL = () => TRIVIA_X.concat(Object.values(QUIZ).flat());
+const TRIVIA_POOL = () => TRIVIA_X.concat(Object.values(QUIZ).flat()).filter(q => q && q.id && q.q && q.q.en && Array.isArray(q.a) && q.a.length >= 3 && q.a.every(a => a && a.en));
 const TV_N = 3, TV_R = 8, TV_PERFECT = 20;
 let TVP = null; /* practice question in progress */
 function tvState() {
@@ -7729,12 +7729,11 @@ Object.assign(QUIZ, {
   ev2: [{ id: 'qev2', q: { en: 'What do the three stars on the flag stand for?', fil: 'Ano ang kinakatawan ng tatlong bituin sa watawat?' }, a: [{ en: 'Luzon, Visayas and Mindanao', fil: 'Luzon, Visayas at Mindanao' }, { en: 'Three heroes', fil: 'Tatlong bayani' }, { en: 'Three rivers', fil: 'Tatlong ilog' }] }],
   ev3: [{ id: 'qev3', q: { en: 'Who sewed the first Philippine flag in Hong Kong?', fil: 'Sino ang nagtahi ng unang watawat ng Pilipinas sa Hong Kong?' }, a: [{ en: 'Marcela Agoncillo', fil: 'Marcela Agoncillo' }, { en: 'Gabriela Silang', fil: 'Gabriela Silang' }, { en: 'Teresa Magbanua', fil: 'Teresa Magbanua' }] }]
 });
-TRIVIA_X.push(
+TRIVIA_X.push(...[
   ['Where was Philippine independence proclaimed on 12 June 1898?', 'Saan ipinahayag ang kalayaan ng Pilipinas noong 12 Hunyo 1898?', ['Kawit, Cavite', 'Malolos, Bulacan', 'Vigan, Ilocos Sur'], ['Kawit, Cavite', 'Malolos, Bulacan', 'Vigan, Ilocos Sur']],
-  ['Who composed the music of the national anthem?', 'Sino ang kumatha ng musika ng pambansang awit?', ['Julián Felipe', 'José Palma', 'Juan Luna'], ['Julián Felipe', 'José Palma', 'Juan Luna']],
   ['What do the eight rays of the sun on the flag stand for?', 'Ano ang kinakatawan ng walong sinag ng araw sa watawat?', ['The first eight provinces to revolt against Spain', 'Eight heroes', 'Eight islands'], ['Ang unang walong lalawigang naghimagsik laban sa Espanya', 'Walong bayani', 'Walong pulo']],
   ['Which president moved Independence Day from 4 July to 12 June?', 'Aling pangulo ang naglipat ng Araw ng Kalayaan mula 4 Hulyo patungong 12 Hunyo?', ['Diosdado Macapagal', 'Manuel Quezon', 'Ramon Magsaysay'], ['Diosdado Macapagal', 'Manuel Quezon', 'Ramon Magsaysay']]
-);
+].map((r, i) => ({ id: 'txe' + i, q: { en: r[0], fil: r[1] }, a: [0, 1, 2].map(k => ({ en: r[2][k], fil: r[3][k] })) })));
 TIMELINE.push(
   { y: '1962', open: () => true, en: 'President Diosdado Macapagal moves Independence Day to 12 June.', fil: 'Inilipat ni Pangulong Diosdado Macapagal ang Araw ng Kalayaan sa 12 Hunyo.' }
 );
@@ -8519,7 +8518,7 @@ const MAN = [
 /* small drawings for each page, made from the game's own art */
 function manScene(g, k, tm) {
   const w = 300, h = 160;
-  g.fillStyle = '#E8D5A6'; g.fillRect(0, 0, w, h);
+  manBg(g, tm, w, h);
   const road = (y0 = 98) => { g.strokeStyle = '#B99A63'; g.lineWidth = 28; g.lineCap = 'round'; g.beginPath(); g.moveTo(-10, y0); g.bezierCurveTo(90, y0 - 40, 180, y0 + 34, 310, y0 - 6); g.stroke(); g.strokeStyle = '#D9C08A'; g.lineWidth = 20; g.stroke(); g.lineCap = 'butt'; };
   const plot = (x, y) => { g.fillStyle = '#A99A80'; g.strokeStyle = C.ink; g.lineWidth = 1.2; g.beginPath(); g.ellipse(x, y, 15, 7, 0, 0, TAU); g.fill(); g.stroke(); };
   const lbl = (s, x, y, size = 10, col = C.ink) => { g.font = `700 ${size}px ${F_BODY}`; g.textAlign = 'center'; g.fillStyle = col; g.fillText(s, x, y); };
@@ -8801,11 +8800,335 @@ function hsBtn(g, s, col, draw, frac, lab, on) {
   hsBtn(g, HSB.swap, '#2F3C73', () => { g.save(); g.translate(HSB.swap.x, HSB.swap.y); g.strokeStyle = '#FFFFFF'; g.lineWidth = 2.2; g.beginPath(); g.moveTo(-8, -3); g.lineTo(7, -3); g.moveTo(3, -7); g.lineTo(7, -3); g.lineTo(3, 1); g.moveTo(8, 4); g.lineTo(-7, 4); g.moveTo(-3, 0); g.lineTo(-7, 4); g.lineTo(-3, 8); g.stroke(); g.restore(); }, B.swapCd / 25, t('hsSwitch'), false);
 }; }
 /* the "tap a plot" hint sits above the power buttons now */
+/* ---------------------------------------------------------------- v34: final polish - full screen, tidy home, game modes, story chooser, new manual look, credits */
+const APP_VER = 'v.34.2.26.115';
+Object.assign(TXT.en, {
+  howTo: 'How to play?', manOpen: '📖 How to play?', fsOpt: 'Full screen', modesBtn: 'Game Modes', modesT: 'Game Modes', modesSub: 'More ways to play between battles',
+  modeMini: 'Quick games that pay pearls: 3 pearl plays a day for each game.', modeEv: 'Festival battles, missions and a shop paid in Flags.', modeEnd: 'Hold the line as long as you can. A boss every 10 waves.',
+  modeLive: 'Flags ×2 now!', modeOpen: 'Open', storyBtn: 'Story', storyT: 'Chapter story', storyOpenD: 'How the chapter begins', storyEndD: 'How the chapter ends', storyLock: 'Finish the chapter to unlock',
+  credT: 'Credits', credBy: 'Made by', credStudio: 'K&A Studios', credVer: 'Version', credThanks: 'Made for every young Filipino who loves our history. Mabuhay!',
+  manTip: 'Tip', manStart: 'Let’s go!'
+});
+Object.assign(TXT.fil, {
+  howTo: 'Paano maglaro?', manOpen: '📖 Paano maglaro?', fsOpt: 'Buong screen', modesBtn: 'Iba Pang Laro', modesT: 'Iba Pang Laro', modesSub: 'Iba pang paraan ng paglalaro sa pagitan ng labanan',
+  modeMini: 'Mabilis na laro na may perlas: 3 laro bawat araw sa bawat isa.', modeEv: 'Laban ng pista, misyon at tindahang Watawat ang bayad.', modeEnd: 'Ipagtanggol ang bayan hangga’t kaya. May boss tuwing ika-10 alon.',
+  modeLive: 'Watawat ×2 ngayon!', modeOpen: 'Buksan', storyBtn: 'Kuwento', storyT: 'Kuwento ng kabanata', storyOpenD: 'Paano nagsimula ang kabanata', storyEndD: 'Paano nagwakas ang kabanata', storyLock: 'Tapusin ang kabanata para mabuksan',
+  credT: 'Gumawa', credBy: 'Gawa ng', credStudio: 'K&A Studios', credVer: 'Bersyon', credThanks: 'Para sa bawat batang Pilipinong mahilig sa ating kasaysayan. Mabuhay!',
+  manTip: 'Payo', manStart: 'Tara na!'
+});
+
+/* ---- styles ---- */
+{ const st = document.createElement('style'); st.textContent = `
+@media (max-width: 600px) {
+  body { padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px) !important; }
+  #stage { border-radius: 0 !important; box-shadow: none !important; }
+}
+#stage.inBattle { background: #2A1A0E; }
+#stage.inBattle::before, #stage.inBattle::after { content: ''; position: absolute; left: 0; right: 0; height: var(--band, 0px); pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 2px, rgba(0,0,0,0) 2px 9px), linear-gradient(#3A2414, #24160B); }
+#stage.inBattle::before { top: 0; border-bottom: 2px solid #C9972F; } #stage.inBattle::after { bottom: 0; border-top: 2px solid #C9972F; }
+#cv { will-change: transform; }
+
+/* home: six tiles in a 3x2 grid, gear in the corner */
+#splash .nav { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; margin-top: 12px !important; }
+#splash .nav button { flex-direction: column; gap: 2px !important; min-height: 66px !important; font-size: 15px !important; padding: 6px 2px !important; grid-column: auto !important; line-height: 1.05; border-radius: 12px; }
+#splash .nav button canvas { width: 30px !important; height: 30px !important; }
+#splash .nav button.dot::after { top: 5px; right: 6px; }
+#navSettings { display: none !important; }
+#splash .bottom { margin-top: auto !important; margin-bottom: 18px; }
+@media (min-aspect-ratio: 10/19) { #splash .bottom { margin-top: 18px !important; } }
+#homeGear { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--ink); background: var(--parch); box-shadow: 0 3px 0 rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; z-index: 3; }
+#homeGear:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,.35); }
+#homePurse { right: 62px !important; }
+
+/* map: one Game Modes button */
+#btnMini, #btnEvent, #btnEndless { display: none !important; }
+#btnModes { left: 10px; right: auto; display: flex; align-items: center; gap: 6px; background: linear-gradient(#3B4A8C, #232C5C); }
+#btnModes[hidden] { display: none !important; }
+#modes, #storyPick { position: fixed; inset: 0; z-index: 66; background: rgba(20,12,6,.72); display: flex; align-items: flex-end; justify-content: center; animation: mdFade .2s ease-out; }
+#modes[hidden], #storyPick[hidden] { display: none; }
+@keyframes mdFade { from { opacity: 0; } }
+@keyframes mdUp { from { transform: translateY(40px); opacity: .4; } }
+.mdSheet { width: min(380px, 100vw); box-sizing: border-box; background: var(--parch); border: 3px solid var(--ink); border-bottom: 0; border-radius: 18px 18px 0 0; padding: 14px 14px calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 10px; animation: mdUp .25s cubic-bezier(.2,.9,.3,1.2);
+  background-image: radial-gradient(ellipse at 30% 0%, rgba(255,246,214,.7), rgba(217,194,141,.3) 70%); }
+.mdSheet .grab { width: 44px; height: 5px; border-radius: 3px; background: rgba(42,26,14,.35); align-self: center; margin-top: -4px; }
+.mdSheet h3 { font-family: var(--display); font-weight: 400; font-size: 26px; margin: 0; text-align: center; color: var(--ink); }
+.mdSheet .sub { margin: -6px 0 2px; text-align: center; font-size: 13px; color: var(--sepia); letter-spacing: 0; padding: 0; font-family: var(--body); }
+.mdCard { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 10px; text-align: left; border: 2px solid var(--ink); border-radius: 14px; padding: 10px; cursor: pointer; color: #F6E8C0; box-shadow: inset 0 0 0 1.5px rgba(242,193,78,.7), 0 4px 0 rgba(0,0,0,.35); font-family: var(--body); position: relative; overflow: hidden; }
+.mdCard:active { transform: translateY(2px); box-shadow: inset 0 0 0 1.5px rgba(242,193,78,.7), 0 2px 0 rgba(0,0,0,.35); }
+.mdCard.m0 { background: linear-gradient(135deg, #3B4A8C, #232C5C); } .mdCard.m1 { background: linear-gradient(135deg, #B0322A, #6E1A14); } .mdCard.m2 { background: linear-gradient(135deg, #5F8B3B, #2F4D1C); }
+.mdCard.lock { filter: grayscale(.85) brightness(.85); }
+.mdCard .ic { width: 58px; height: 58px; border-radius: 12px; background: rgba(255,246,214,.16); display: flex; align-items: center; justify-content: center; }
+.mdCard b { display: block; font-family: var(--display); font-weight: 400; font-size: 21px; color: #FFF2C8; }
+.mdCard span.d { display: block; font-size: 12.5px; line-height: 1.3; opacity: .95; margin-top: 2px; }
+.mdCard .tag { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 700; background: #F2C14E; color: var(--ink); border-radius: 999px; padding: 2px 8px; }
+.mdCard .go { font-size: 22px; color: #F2C14E; padding-right: 2px; }
+.mdClose { align-self: center; background: none; border: 0; font: 700 15px var(--body); color: var(--ink); text-decoration: underline; padding: 8px 16px; cursor: pointer; min-height: 40px; }
+.storyCards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stCard { border: 2px solid var(--ink); border-radius: 14px; padding: 0 0 10px; overflow: hidden; background: #F3E3B6; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; font-family: var(--body); color: var(--ink); box-shadow: 0 4px 0 rgba(0,0,0,.35); position: relative; }
+.stCard canvas { width: 100%; height: auto; display: block; border-bottom: 2px solid var(--ink); }
+.stCard b { font-family: var(--display); font-weight: 400; font-size: 19px; margin-top: 4px; } .stCard span { font-size: 12px; padding: 0 8px; line-height: 1.25; }
+.stCard.lock { cursor: default; } .stCard.lock canvas { filter: grayscale(1) brightness(.55); }
+.stCard .lk { position: absolute; top: 34px; left: 50%; transform: translateX(-50%); font-size: 26px; }
+
+/* settings footer */
+.credits { margin: 14px 4px 8px; padding: 14px 12px; border-radius: 14px; border: 2px solid var(--ink); background: linear-gradient(#2B3670, #151B45); color: #F6E8C0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; box-shadow: inset 0 0 0 1.5px rgba(242,193,78,.7); }
+.credits img { width: 64px; height: 64px; border-radius: 14px; border: 2px solid #C9972F; }
+.credits .cn { font-family: var(--display); font-size: 22px; color: #FFE08A; } .credits .cs { font-size: 10px; letter-spacing: .3em; color: #F2C14E; }
+.credits .cb { font-size: 13px; margin-top: 4px; } .credits .cb strong { color: #FFE08A; font-size: 15px; }
+.credits .cv { font: 700 12px ui-monospace, monospace; background: rgba(0,0,0,.3); border-radius: 999px; padding: 3px 10px; margin-top: 4px; color: #FFF2C8; }
+.credits .ct { font-size: 11.5px; opacity: .85; margin-top: 4px; line-height: 1.35; }
+
+/* manual, redesigned */
+#manual .manCard { border: 0 !important; padding: 0 !important; overflow: hidden !important; border-radius: 18px !important; background: #F3E3B6 !important; box-shadow: 0 0 0 3px var(--ink), 0 0 0 6px #C9972F, 0 0 0 8px var(--ink), 0 12px 30px rgba(0,0,0,.55) !important; gap: 0 !important; width: min(344px, 92vw) !important; }
+#manual .manTop { position: relative; background: linear-gradient(#B0322A, #7E1E17); padding: 10px 12px 12px; border-bottom: 3px solid var(--ink); box-shadow: inset 0 -3px 0 #C9972F; }
+#manual .manTop b { color: #FFE08A !important; font-size: 22px !important; text-shadow: 0 2px 0 rgba(0,0,0,.35); display: flex; align-items: center; gap: 8px; }
+#manual .manTop b::before { content: '📜'; font-size: 20px; }
+#manual .manSkip { background: rgba(0,0,0,.35) !important; border: 1.5px solid #F2C14E !important; }
+#manual .manTabs { display: flex; gap: 4px; justify-content: space-between; padding: 8px 10px 4px; background: #E8D5A6; border-bottom: 1px solid rgba(42,26,14,.25); }
+#manual .manTabs button { flex: 1; min-width: 0; height: 28px; padding: 0; border-radius: 8px; border: 1.5px solid rgba(42,26,14,.5); background: #F6EACB; font-size: 14px; line-height: 1; cursor: pointer; filter: grayscale(.7); opacity: .7; transition: transform .15s, background .15s; }
+#manual .manTabs button.seen { filter: none; opacity: .95; }
+#manual .manTabs button.on { background: #F2C14E; border-color: var(--ink); filter: none; opacity: 1; transform: translateY(-3px) scale(1.12); box-shadow: 0 3px 0 rgba(0,0,0,.35); }
+#manual .manBody { padding: 10px 14px 12px; display: flex; flex-direction: column; gap: 6px; }
+#manual .manPic { position: relative; }
+#manual canvas { border-radius: 12px !important; box-shadow: 0 0 0 2px var(--ink), 0 4px 0 rgba(0,0,0,.25); display: block; }
+#manual .manNo { position: absolute; right: -6px; top: -8px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #D84A3A, #8E2219); border: 2px solid var(--ink); box-shadow: inset 0 0 0 2px #F2C14E, 0 3px 0 rgba(0,0,0,.35); color: #FFF2C8; font: 700 18px var(--display); display: flex; align-items: center; justify-content: center; }
+#manual .manH { font-size: 23px !important; margin: 4px 0 0 !important; color: #7E1E17; }
+#manual .manP { min-height: 0 !important; font-size: 14.5px !important; }
+#manual .manP strong { color: #9B2C22; background: linear-gradient(transparent 60%, rgba(242,193,78,.55) 60%); padding: 0 1px; }
+#manual .manTip { display: flex; gap: 8px; align-items: flex-start; background: #FFF4D2; border: 1.5px dashed #C9972F; border-radius: 10px; padding: 6px 10px; font-size: 13px; line-height: 1.35; }
+#manual .manTip i { font-style: normal; font-size: 16px; }
+#manual .manBar { height: 6px; border-radius: 3px; background: rgba(42,26,14,.15); overflow: hidden; margin-top: 2px; } #manual .manBar i { display: block; height: 100%; background: linear-gradient(90deg, #C9972F, #9B2C22); border-radius: 3px; transition: width .3s ease; }
+#manual .manDots { display: none !important; }
+#manual .manNav .manNext { min-width: 120px !important; }
+#manual .manNav .manNext.final { background: var(--bamboo); animation: pulse 1.4s ease-in-out infinite; }
+#manual .flipL { animation: manL .28s ease-out; } #manual .flipR { animation: manR .28s ease-out; }
+@keyframes manL { from { opacity: 0; transform: translateX(26px); } } @keyframes manR { from { opacity: 0; transform: translateX(-26px); } }
+.bigtext #manual .manP { font-size: 16.5px !important; }
+`; document.head.append(st); }
+
+/* ---- 3. full screen: the stage grows to the phone's shape, and the browser bars hide on the first tap ---- */
+view.SH = H; view.off = 0;
+layout = function () {
+  const hr = $('#holder').getBoundingClientRect(); if (!hr.width || !hr.height) return;
+  view.dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const SH = Math.round(clamp(hr.height / hr.width * W, H, H * 1.34));
+  view.SH = SH; view.off = Math.round((SH - H) / 2);
+  view.scale = Math.max(.3, Math.min(hr.width / W, hr.height / SH));
+  const st = $('#stage'); st.style.height = SH + 'px'; st.style.transform = `scale(${view.scale})`;
+  st.style.left = Math.max(0, (hr.width - W * view.scale) / 2) + 'px'; st.style.top = Math.max(0, (hr.height - SH * view.scale) / 2) + 'px';
+  st.style.setProperty('--band', view.off + 'px');
+  cv.width = Math.round(W * view.scale * view.dpr); cv.height = Math.round(H * view.scale * view.dpr);
+  CVMODE = ''; placeCanvas(); buildBG();
+};
+let CVMODE = '';
+function placeCanvas() {
+  const m = S.mode === 'battle' ? 'battle' : 'menu'; if (m === CVMODE) return; CVMODE = m;
+  cv.style.top = view.off + 'px'; cv.style.transformOrigin = '50% 50%';
+  cv.style.transform = m === 'battle' || view.SH <= H ? 'none' : `scale(${(view.SH / H + .002).toFixed(4)})`;
+  $('#stage').classList.toggle('inBattle', m === 'battle' && view.off > 0);
+}
+/* battle-only screens and toasts that sit over the field follow the canvas */
+const fsWant = () => opt().fs !== false;
+const isFull = () => !!(document.fullscreenElement || document.webkitFullscreenElement) || matchMedia('(display-mode: fullscreen)').matches;
+function goFull() {
+  if (!fsWant() || isFull()) return; const el = document.documentElement, rq = el.requestFullscreen || el.webkitRequestFullscreen; if (!rq) return;
+  try { const p = rq.call(el, { navigationUI: 'hide' }); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+  try { screen.orientation && screen.orientation.lock && screen.orientation.lock('portrait').catch(() => {}); } catch (e) {}
+}
+document.addEventListener('pointerup', goFull, true);
+['fullscreenchange', 'webkitfullscreenchange'].forEach(ev => document.addEventListener(ev, () => setTimeout(layout, 60)));
+
+/* ---- 6. smoother menus: skip drawing under the boot screen, slow the backdrop behind full pages, ease off on slow phones ---- */
+{ const o = frame; let lastDraw = 0, cost = 4, slow = 0;
+  frame = function (now) {
+    placeCanvas();
+    if (S.mode === 'battle' && B) return o(now);
+    const boot = document.getElementById('boot');
+    if (boot && !boot.classList.contains('out')) { last = now; requestAnimationFrame(frame); return; }
+    const covered = !!document.querySelector('#stage > .screen.page:not([hidden])') || (document.getElementById('manual') && !document.getElementById('manual').hidden) || (document.getElementById('modes') && !document.getElementById('modes').hidden);
+    const gap = covered ? 120 : slow > 30 ? 32 : 0;
+    if (now - lastDraw < gap - 3) { requestAnimationFrame(frame); return; }
+    lastDraw = now; const t0 = performance.now(); o(now); cost = cost * .92 + (performance.now() - t0) * .08;
+    slow = cost > 9 ? Math.min(60, slow + 1) : Math.max(0, slow - 1);
+  };
+}
+document.addEventListener('visibilitychange', () => { try { if (!AU.ctx) return; if (document.hidden) AU.ctx.suspend(); else AU.ctx.resume(); } catch (e) {} });
+
+/* ---- 5. home: settings becomes a gear in the corner, six tiles below ---- */
+{
+  const g = document.createElement('button'); g.type = 'button'; g.id = 'homeGear'; g.setAttribute('aria-label', 'Settings');
+  g.append(cvs(28, 28, c => iconGlyph(c, 'gear', 14, 14, 1.05))); g.onclick = () => $('#navSettings').click(); $('#splash').append(g);
+  const nav = $('#splash .nav'), order = ['#navHeroes', '#navTalents', '#navShop', '#navQuests', '#navAklat', '#navAlbum'];
+  order.forEach(s => { const b = $(s); if (b) { b.classList.remove('wide'); nav.append(b); } });
+  const al = $('#navAlbum'); if (al) al.innerHTML = '<span data-i18n="album">Album</span>';
+}
+function albumIcon(g) {
+  g.save(); g.translate(15, 15); g.lineJoin = 'round';
+  g.fillStyle = '#7E1E17'; g.strokeStyle = C.ink; g.lineWidth = 1.5; g.beginPath(); g.roundRect(-12, -10, 24, 20, 3); g.fill(); g.stroke();
+  [[-8.5, -7, -.12], [0.5, -7.5, .1]].forEach(([x, y, r]) => { g.save(); g.translate(x + 4, y + 7); g.rotate(r); g.fillStyle = '#F6EACB'; g.fillRect(-4, -7, 8, 13); g.strokeRect(-4, -7, 8, 13); g.fillStyle = r < 0 ? '#2F3C73' : '#5F8B3B'; g.fillRect(-2.6, -5.4, 5.2, 6); g.restore(); });
+  g.fillStyle = '#F2C14E'; g.beginPath(); g.arc(8, 6, 3, 0, TAU); g.fill(); g.stroke(); g.restore();
+}
+{ const o = applyLang; applyLang = function () { o(); try {
+  const al = $('#navAlbum'); if (al) { al.querySelector('canvas')?.remove(); al.prepend(cvs(30, 30, albumIcon)); const sp = al.querySelector('[data-i18n="album"]'); if (sp) sp.textContent = t('album'); }
+  const gb = $('#homeGear'); if (gb) gb.setAttribute('aria-label', t('settings'));
+} catch (e) {} }; }
+
+/* ---- 4.1 map: one Game Modes button opens a sheet with the three modes ---- */
+function modeIcon(i) {
+  return cvs(46, 46, g => {
+    g.save(); g.translate(23, 23); g.lineJoin = 'round'; g.lineCap = 'round'; g.strokeStyle = C.ink; g.lineWidth = 2;
+    if (i === 0) { /* sipa: a woven rattan ball with motion lines */
+      g.strokeStyle = 'rgba(255,242,200,.8)'; g.lineWidth = 2.4; [[-20, -6, -11, -6], [-21, 1, -12, 1], [-19, 8, -11, 7]].forEach(([a, b, c, d]) => { g.beginPath(); g.moveTo(a, b); g.lineTo(c, d); g.stroke(); });
+      g.fillStyle = '#E2B65A'; g.strokeStyle = C.ink; g.lineWidth = 2; g.beginPath(); g.arc(5, 0, 13, 0, TAU); g.fill(); g.stroke();
+      g.strokeStyle = '#8A5B2B'; g.lineWidth = 1.6; for (let k = 0; k < 3; k++) { g.beginPath(); g.ellipse(5, 0, 13, 5, k * Math.PI / 3, 0, TAU); g.stroke(); }
+    } else if (i === 1) { g.restore(); const f = flagCvs(40); g.drawImage(f, 3, 6, 40, 40 * f.height / f.width); return; }
+    else { /* endless: a shield with an infinity loop */
+      g.fillStyle = '#E8D3A0'; g.beginPath(); g.moveTo(0, -18); g.lineTo(15, -12); g.lineTo(14, 4); g.quadraticCurveTo(10, 14, 0, 19); g.quadraticCurveTo(-10, 14, -14, 4); g.lineTo(-15, -12); g.closePath(); g.fill(); g.stroke();
+      g.strokeStyle = '#7E1E17'; g.lineWidth = 3; g.beginPath(); for (let k = 0; k <= 60; k++) { const a = k / 60 * TAU, x = 9 * Math.cos(a) / (1 + Math.sin(a) ** 2), y = 9 * Math.sin(a) * Math.cos(a) / (1 + Math.sin(a) ** 2); k ? g.lineTo(x, y + 1) : g.moveTo(x, y + 1); } g.stroke();
+    }
+    g.restore();
+  });
+}
+function openModes() {
+  let el = $('#modes'); if (!el) { el = document.createElement('div'); el.id = 'modes'; document.body.append(el); el.onclick = e => { if (e.target === el) closeModes(); }; }
+  SFX.click(); el.innerHTML = `<div class="mdSheet"><div class="grab"></div><h3>${t('modesT')}</h3><p class="sub">${t('modesSub')}</p></div>`;
+  const sh = el.querySelector('.mdSheet'), eOk = endlessOpen();
+  const M = [
+    { title: t('mgTitle'), d: t('modeMini'), tag: '', go: () => openMini() },
+    { title: t('evTitle'), d: t('modeEv'), tag: evLive() ? '⚑ ' + t('modeLive') : '', go: () => openEvent() },
+    { title: t('p19_title'), d: eOk ? t('modeEnd') : t('p19_lock'), tag: '', lock: !eOk, go: () => openEndless() }
+  ];
+  M.forEach((m, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = `mdCard m${i}` + (m.lock ? ' lock' : '');
+    const ic = document.createElement('span'); ic.className = 'ic'; ic.append(modeIcon(i));
+    const tx = document.createElement('span'); tx.innerHTML = `<b>${m.title}</b><span class="d">${m.d}</span>${m.tag ? `<span class="tag">${m.tag}</span>` : ''}`;
+    const go = document.createElement('span'); go.className = 'go'; go.textContent = m.lock ? '🔒' : '›';
+    b.append(ic, tx, go); b.onclick = () => { if (m.lock) { SFX.denied(); q18Toast(t('p19_lock')); return; } closeModes(true); m.go(); }; sh.append(b);
+  });
+  const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'mdClose'; cl.textContent = t('close'); cl.onclick = () => closeModes(); sh.append(cl);
+  el.hidden = false;
+}
+function closeModes(silent) { const el = $('#modes'); if (el) el.hidden = true; if (!silent) SFX.click(); }
+{ const b = document.createElement('button'); b.type = 'button'; b.id = 'btnModes'; b.className = 'mapEndless'; b.onclick = openModes; $('#map').append(b); }
+{ const o = renderMap; renderMap = function () { o(); try {
+  const b = $('#btnModes'); if (b) b.hidden = !!MAPV.ch;
+  /* "How to play?" in the chapter bar */
+  document.querySelectorAll('#chapBar .act').forEach(x => { if (x.textContent.startsWith('? ')) x.textContent = x.textContent.slice(2); });
+  /* 4.3 one Story button inside a chapter */
+  if (MAPV.ch) {
+    const bar = $('#chapBar'), acts = [...bar.querySelectorAll('.act')];
+    const s1 = acts.find(x => x.textContent.includes(t('introStory'))), s2 = acts.find(x => x.textContent.includes(t('endStory')));
+    if (s1 && s2) { const c = MAPV.ch; s1.remove(); s2.remove(); const sb = document.createElement('button'); sb.type = 'button'; sb.className = 'act';
+      sb.append(cvs(18, 18, g => iconGlyph(g, 'book', 9, 9, .7)), document.createTextNode(' ' + t('storyBtn'))); sb.onclick = () => openStoryPick(c); bar.append(sb); }
+  }
+} catch (e) {} }; }
+{ const o = applyLang; applyLang = function () { o(); const b = $('#btnModes'); if (b) { b.textContent = ''; b.append(cvs(22, 22, g => { g.save(); g.translate(11, 11); star(g, 0, 0, 8, C.gold, C.ink); g.restore(); }), document.createTextNode(' ' + t('modesBtn'))); } }; }
+
+/* ---- 4.3 story chooser: opening and ending, ending locked until the chapter is cleared ---- */
+function openStoryPick(c) {
+  let el = $('#storyPick'); if (!el) { el = document.createElement('div'); el.id = 'storyPick'; document.body.append(el); el.onclick = e => { if (e.target === el) { el.hidden = true; SFX.click(); } }; }
+  SFX.click(); const ids = chIdx(c), endOk = !!(S.best[STAGES[ids[ids.length - 1]].id] & 1);
+  el.innerHTML = `<div class="mdSheet"><div class="grab"></div><h3>${t('storyT')}</h3><p class="sub">${chLabel(c)} · ${chTitle(c)}</p><div class="storyCards"></div></div>`;
+  const box = el.querySelector('.storyCards');
+  [['intro', t('introStory'), t('storyOpenD'), true], ['end', t('endStory'), endOk ? t('storyEndD') : t('storyLock'), endOk]].forEach(([part, title, d, ok]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'stCard' + (ok ? '' : ' lock');
+    const pic = document.createElement('canvas'); pic.width = 320; pic.height = 200;
+    try { const g = pic.getContext('2d'); const keep = { ch: SY.ch, part: SY.part }; SY.ch = c; SY.part = part; drawStoryPanel(g, part === 'intro' ? 0 : storyLen(c) - 1, 1.5); SY.ch = keep.ch; SY.part = keep.part; } catch (e) { const g = pic.getContext('2d'); g.fillStyle = '#D9C28D'; g.fillRect(0, 0, 320, 200); }
+    b.append(pic); b.insertAdjacentHTML('beforeend', `<b>${title}</b><span>${d}</span>${ok ? '' : '<span class="lk">🔒</span>'}`);
+    b.onclick = () => { if (!ok) { SFX.denied(); q18Toast(t('storyLock')); return; } el.hidden = true; openStory(c, part); };
+    box.append(b);
+  });
+  const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'mdClose'; cl.textContent = t('close'); cl.onclick = () => { el.hidden = true; SFX.click(); }; el.querySelector('.mdSheet').append(cl);
+  el.hidden = false;
+}
+function storyLen(c) { const k = SY.ch; SY.ch = c; const n = storyOf().length; SY.ch = k; return n || 1; }
+
+/* ---- 7. credits and version at the bottom of settings; full screen switch ---- */
+{
+  const list = document.querySelector('#settings .list'), anchor = $('#setReset') && $('#setReset').closest('.srow');
+  const d = document.createElement('div'); d.className = 'srow'; const l = document.createElement('span'); l.className = 'lbl'; l.dataset.k = 'fsOpt';
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'act'; b.id = 'opt_fs';
+  b.onclick = () => { opt().fs = !fsWant(); save(); SFX.click(); if (fsWant()) goFull(); else if (isFull() && document.exitFullscreen) document.exitFullscreen().catch(() => {}); applyLang(); };
+  d.append(l, b); if (anchor) list.insertBefore(d, anchor); else list.append(d);
+  const cr = document.createElement('div'); cr.className = 'credits'; list.append(cr);
+}
+{ const o = applyLang; applyLang = function () { o(); try {
+  const b = $('#opt_fs'); if (b) { const on = fsWant(); b.textContent = on ? '✔ ' + t('on') : t('off'); b.className = 'act ' + (on ? 'on' : 'off'); }
+  const cr = document.querySelector('#settings .credits');
+  if (cr) cr.innerHTML = `<img src="${LOGO96}" alt=""><span class="cn">Bayani Defense</span><span class="cs">PINOY TOWER DEFENSE</span><span class="cb">${t('credBy')} <strong>${t('credStudio')}</strong></span><span class="cv">${t('credVer')} ${APP_VER}</span><span class="ct">${t('credThanks')}</span>`;
+} catch (e) {} }; }
+
+/* ---- 4.2 Bayani Manual, redesigned: picture with a sky, icon tabs, highlighted words, a tip on each page ---- */
+{ const P = k => MAN.find(m => m.k === k);
+  const h = P('hero'); if (h) h.p = { en: 'Your hero fights on the road. Tap the hero, then tap a spot on the road to move. Tap the hero’s portrait to use a Skill yourself, turn Auto on or off, or Switch to another hero. When the Ultimate is full, tap it for a big power.', fil: 'Lumalaban sa daan ang iyong bayani. Pindutin ang bayani, saka pindutin ang lugar sa daan para lumipat. Pindutin ang larawan ng bayani para gamitin ang Kasanayan, buksan o isara ang Auto, o Magpalit ng bayani. Kapag puno na ang Ultimate, pindutin ito para sa malakas na kapangyarihan.' };
+  const c = P('controls'); if (c) c.p = { en: 'At the top right: 🔊 sound on or off, 1× / 2× / 3× game speed, and ❚❚ to pause. That’s everything. Good luck, Bayani!', fil: 'Sa kanang itaas: 🔊 tunog, 1× / 2× / 3× bilis ng laro, at ❚❚ para huminto. Iyan na lahat. Good luck, Bayani!' };
+}
+const MAN_IC = { goal: '🎯', build: '🔨', towers: '🏯', upgrade: '⬆️', waves: '🌊', hero: '🛡️', powers: '⚡', tactics: '🏹', weather: '🌧️', stars: '⭐', controls: '⏩' };
+const MAN_TIP = {
+  goal: { en: 'Keep an eye on the ❤ counter at the top of the field.', fil: 'Bantayan ang ❤ sa itaas ng larangan.' },
+  build: { en: 'Plots near bends in the road let towers shoot for longer.', fil: 'Mas matagal tumira ang tore sa puwesto malapit sa liko ng daan.' },
+  towers: { en: 'Mix tower types: every enemy has a weakness.', fil: 'Paghaluin ang mga tore: may kahinaan ang bawat kalaban.' },
+  upgrade: { en: 'Upgrading a good tower is often better than building a new one.', fil: 'Kadalasan mas mabuting i-upgrade ang tore kaysa magtayo ng bago.' },
+  waves: { en: 'Call waves early only when your defence is ready.', fil: 'Tawagin nang maaga ang alon kapag handa na ang depensa.' },
+  hero: { en: 'A fallen hero comes back after a short wait.', fil: 'Bumabalik ang nasawing bayani pagkaraan ng ilang sandali.' },
+  powers: { en: 'Save Unos for big groups or the boss.', fil: 'Itabi ang Unos para sa malaking grupo o sa boss.' },
+  tactics: { en: 'Lay spikes just before your Kuta soldiers.', fil: 'Ilagay ang patibong bago ang sundalo ng Kuta.' },
+  weather: { en: 'Build a Lantaka before night waves.', fil: 'Magtayo ng Lantaka bago ang alon sa gabi.' },
+  stars: { en: 'Replay a battle any time to win the stars you missed.', fil: 'Ulitin ang laban para makuha ang kulang na bituin.' },
+  controls: { en: 'Use 3× when your towers have the wave under control.', fil: 'Gamitin ang 3× kapag kontrolado na ng tore ang alon.' }
+};
+const MAN_HL = { en: ['lives', 'gold', 'Archers', 'Kuta', 'Lantaka', 'Babaylan', 'special tower', '⬆', 'level 3', 'sell', 'waves', 'Call wave', 'secret path', 'Skill', 'Auto', 'Switch', 'Ultimate', 'Tulong ng Bayan', 'Unos', 'gong', 'spike trap', 'rain arrows', 'Decree', 'rain', 'night', 'typhoon', 'Win the battle', 'Lose no lives', 'Win fast', 'pearls', 'history quiz', 'game speed', 'pause'],
+  fil: ['buhay', 'ginto', 'Mamamana', 'Kuta', 'Lantaka', 'Babaylan', 'espesyal na tore', '⬆', 'antas 3', 'ibenta', 'paalon-alon', 'Tawagin ang salakay', 'lihim na daanan', 'Kasanayan', 'Auto', 'Magpalit', 'Ultimate', 'Tulong ng Bayan', 'Unos', 'gong', 'patibong', 'umulan ng pana', 'Kautusan', 'ulan', 'gabi', 'bagyo', 'Manalo sa laban', 'Walang nawalang buhay', 'Manalo nang mabilis', 'perlas', 'pagsusulit', 'bilis', 'huminto'] };
+function manMark(s) {
+  const esc = x => x.replace(/&/g, '&amp;').replace(/</g, '&lt;'); let out = esc(s);
+  (MAN_HL[S.lang] || MAN_HL.en).forEach(w => { const e = esc(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); out = out.replace(new RegExp('(^|[^\\p{L}>])(' + e + ')(?![\\p{L}<])', 'u'), '$1<strong>$2</strong>'); });
+  return out;
+}
+function manBg(g, tm, w, h) {
+  const sky = g.createLinearGradient(0, 0, 0, 62); sky.addColorStop(0, '#9CC3D6'); sky.addColorStop(1, '#F4E2B0'); g.fillStyle = sky; g.fillRect(0, 0, w, 62);
+  g.fillStyle = 'rgba(255,240,180,.9)'; g.beginPath(); g.arc(250, 26, 13, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,230,150,.35)'; g.beginPath(); g.arc(250, 26, 22, 0, TAU); g.fill();
+  g.fillStyle = 'rgba(255,255,255,.85)'; [[(tm * 6) % 380 - 40, 18], [(tm * 4 + 190) % 380 - 40, 34]].forEach(([x, y]) => { g.beginPath(); g.arc(x, y, 7, 0, TAU); g.arc(x + 9, y - 3, 9, 0, TAU); g.arc(x + 19, y, 7, 0, TAU); g.fill(); });
+  g.fillStyle = '#8FA772'; g.beginPath(); g.moveTo(0, 62); for (let x = 0; x <= w; x += 10) g.lineTo(x, 50 - 10 * Math.sin(x * .025) - 5 * Math.sin(x * .07 + 1)); g.lineTo(w, 62); g.closePath(); g.fill();
+  const gr = g.createLinearGradient(0, 56, 0, h); gr.addColorStop(0, '#B8C98A'); gr.addColorStop(1, '#93AC68'); g.fillStyle = gr; g.fillRect(0, 56, w, h - 56);
+  g.strokeStyle = 'rgba(70,100,40,.45)'; g.lineWidth = 1; for (let i = 0; i < 26; i++) { const x = (i * 53) % w, y = 66 + (i * 37) % (h - 70); g.beginPath(); g.moveTo(x, y); g.lineTo(x - 2, y - 5); g.moveTo(x, y); g.lineTo(x + 2, y - 5); g.stroke(); }
+}
+openManual = function (done) {
+  let el = $('#manual'); if (!el) { el = document.createElement('div'); el.id = 'manual'; document.body.append(el); }
+  MANR = { i: 0, raf: 0, done }; const seen = new Set([0]);
+  el.innerHTML = `<div class="manCard"><div class="manTop"><b>${t('manTitle')}</b><button type="button" class="manSkip">${t('manSkip')} ✕</button></div><div class="manTabs">${MAN.map((m, j) => `<button type="button" data-j="${j}" aria-label="${tl(m.t)}">${MAN_IC[m.k] || '•'}</button>`).join('')}</div>
+    <div class="manBody"><div class="manPic"><canvas width="600" height="320"></canvas><span class="manNo"></span></div><div class="manTxt"><h3 class="manH"></h3><p class="manP"></p><div class="manTip"><i>💡</i><span></span></div></div>
+    <div class="manBar"><i></i></div><div class="manNav"><button type="button" class="act off manPrev"></button><span class="manNum"></span><button type="button" class="act manNext"></button></div></div></div>`;
+  el.hidden = false; if (B && S.mode === 'battle') B.paused = true;
+  const c = el.querySelector('canvas'), g = c.getContext('2d'), t0 = performance.now();
+  const loop = now => { if (el.hidden) return; g.setTransform(2, 0, 0, 2, 0, 0); try { manScene(g, MAN[MANR.i].k, (now - t0) / 1000); } catch (e) {} MANR.raf = requestAnimationFrame(loop); };
+  const render = dir => {
+    const Pg = MAN[MANR.i], last = MANR.i === MAN.length - 1; seen.add(MANR.i);
+    el.querySelector('.manH').textContent = tl(Pg.t).replace(/^\d+\.\s*/, ''); el.querySelector('.manP').innerHTML = manMark(tl(Pg.p));
+    el.querySelector('.manTip span').innerHTML = `<b>${t('manTip')}:</b> ${tl(MAN_TIP[Pg.k] || { en: '', fil: '' })}`; el.querySelector('.manTip').hidden = !MAN_TIP[Pg.k];
+    el.querySelector('.manNo').textContent = MANR.i + 1;
+    el.querySelector('.manNum').textContent = `${MANR.i + 1} ${t('manOf')} ${MAN.length}`;
+    el.querySelector('.manBar i').style.width = ((MANR.i + 1) / MAN.length * 100).toFixed(1) + '%';
+    el.querySelectorAll('.manTabs button').forEach((b, j) => { b.className = (j === MANR.i ? 'on' : '') + (seen.has(j) ? ' seen' : ''); });
+    const pv = el.querySelector('.manPrev'); pv.textContent = '‹ ' + t('manBack'); pv.disabled = MANR.i === 0;
+    const nx = el.querySelector('.manNext'); nx.textContent = last ? (done ? t('manGo') : t('manStart')) : t('manNext') + ' ›'; nx.classList.toggle('final', last);
+    if (dir) { const tx = el.querySelector('.manTxt'), pic = el.querySelector('.manPic'); [tx, pic].forEach(x => { x.classList.remove('flipL', 'flipR'); void x.offsetWidth; x.classList.add(dir > 0 ? 'flipL' : 'flipR'); }); }
+    try { el.querySelector('.manTabs .on').scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {}
+  };
+  const go = j => { if (j < 0 || j >= MAN.length || j === MANR.i) return; const d = j > MANR.i ? 1 : -1; MANR.i = j; SFX.page ? SFX.page() : SFX.click(); render(d); };
+  const close = () => { el.hidden = true; cancelAnimationFrame(MANR.raf); S.manualSeen = 1; save(); if (B && S.mode === 'battle' && !done) B.paused = false; const d = MANR.done; MANR.done = null; d && d(); };
+  el.querySelector('.manPrev').onclick = () => go(MANR.i - 1);
+  el.querySelector('.manNext').onclick = () => { if (MANR.i < MAN.length - 1) go(MANR.i + 1); else { SFX.click(); close(); } };
+  el.querySelector('.manSkip').onclick = () => { SFX.click(); close(); };
+  el.querySelectorAll('.manTabs button').forEach(b => b.onclick = () => go(+b.dataset.j));
+  let sx = null; c.onpointerdown = e => { sx = e.clientX; }; c.onpointerup = e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (dx < -40) el.querySelector('.manNext').onclick(); else if (dx > 40) go(MANR.i - 1); };
+  render(0); MANR.raf = requestAnimationFrame(loop);
+};
 /* ---------------------------------------------------------------- Part 12: K&A Studios logo, then a loading screen with a sailing vinta */
 (() => {
   const ov = document.createElement('div'); ov.id = 'boot';
   ov.innerHTML = '<canvas id="bootCv" aria-hidden="true"></canvas><button type="button" id="bootSkip">Skip</button>';
-  document.body.append(ov);
+  document.body.append(ov); { const pb = document.getElementById('preboot'); if (pb) requestAnimationFrame(() => pb.remove()); }
   const c = ov.querySelector('canvas'), g = c.getContext('2d'), skip = ov.querySelector('#bootSkip'), LOGO_T = 4.6;
   let w = 0, h = 0, dpr = 1;
   const fit = () => { dpr = Math.min(2, window.devicePixelRatio || 1); w = ov.clientWidth; h = ov.clientHeight; c.width = w * dpr; c.height = h * dpr; c.style.width = w + 'px'; c.style.height = h + 'px'; };
